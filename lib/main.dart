@@ -27,20 +27,45 @@ class MyHomeState extends State<MyHome> {
         title: Text('To-Do List'),
       ),
       body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: <Widget>[
             Form(
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: TextFormField(),
+                    child: TextFormField(
+                      style: TextStyle(
+                        fontSize: 32,
+                        color: Colors.black87
+                      ),
+                      decoration: InputDecoration(
+                        hintText: 'Type a new task here...',
+                        hintStyle: TextStyle(
+                          fontSize: 20
+                        )
+                      ),
+                      keyboardType: TextInputType.text,
+                    ),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      print('Cliquei!');
-                    },
-                    child: Text('Add')
-                  )
+                  Container(
+                    margin: EdgeInsets.only(left: 20),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print('Cliquei!');
+                      },
+                      child: Text(
+                        'Add',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.black
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )
