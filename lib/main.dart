@@ -22,6 +22,7 @@ class MyHome extends StatefulWidget {
 class MyHomeState extends State<MyHome> {
 
   final TextEditingController taskController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,7 @@ class MyHomeState extends State<MyHome> {
         child: Column(
           children: <Widget>[
             Form(
+              key: _formKey,
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -50,6 +52,14 @@ class MyHomeState extends State<MyHome> {
                         )
                       ),
                       keyboardType: TextInputType.text,
+                      validator: (value) {
+                        if (value != null) {
+                          if (value.trim().isEmpty) {
+                            return 'Task field it\'s required';
+                          }
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   Container(
@@ -57,7 +67,9 @@ class MyHomeState extends State<MyHome> {
                     child: ElevatedButton(
                       onPressed: () {
                         print('Cliquei!');
-                        print(taskController.text);
+                        if (_formKey.currentState!.validate()) {
+                          print(taskController.text);
+                        }
                       },
                       child: Text(
                         'Add',
