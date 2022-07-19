@@ -20,6 +20,9 @@ class MyHome extends StatefulWidget {
 }
 
 class MyHomeState extends State<MyHome> {
+
+  final TextEditingController taskController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +38,7 @@ class MyHomeState extends State<MyHome> {
                 children: <Widget>[
                   Expanded(
                     child: TextFormField(
+                      controller: taskController,
                       style: TextStyle(
                         fontSize: 32,
                         color: Colors.black87
@@ -53,6 +57,7 @@ class MyHomeState extends State<MyHome> {
                     child: ElevatedButton(
                       onPressed: () {
                         print('Cliquei!');
+                        print(taskController.text);
                       },
                       child: Text(
                         'Add',
